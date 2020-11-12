@@ -1,32 +1,16 @@
-package br.hoteleveris.app.model;
+package br.hoteleveris.app.request;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Cliente {
+public class ClienteRequest {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String nome;
 	private String cpf;
 	private String hash;
-	
 	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getCpf() {
 		return cpf;
