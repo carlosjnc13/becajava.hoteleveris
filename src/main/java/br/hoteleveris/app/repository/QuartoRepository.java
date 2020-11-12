@@ -7,6 +7,6 @@ import br.hoteleveris.app.model.Quarto;
 
 
 @Repository
-public interface QuartoRespository extends JpaRepository <Quarto,Long> {
+public interface QuartoRepository extends JpaRepository <Quarto,Long> {
 
 }
