@@ -1,11 +1,14 @@
 package br.hoteleveris.app.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Ocupacao;
 import br.hoteleveris.app.repository.OcupacaoRepository;
 import br.hoteleveris.app.request.OcupacaoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ListOcupacaoResponse;
 
 @Service
 public class OcupacaoService {
@@ -52,6 +55,24 @@ public class OcupacaoService {
 		response.message = "Ocupacao Inserida";
 		response.statusCode = 200;
 		
+		return response;
+
+	}
+	// LISTAR OCUPAÇÕES
+	
+	public ListOcupacaoResponse listar() {
+		
+		List<Ocupacao> lista = _repository.findAll();
+		ListOcupacaoResponse response = new ListOcupacaoResponse();
+		
+		if(lista.isEmpty()) {
+			response.message = "Lista Vazia";
+			return response;
+		}
+		
+		response.setOcupacoes(lista);
+		response.message = "Lista Obtida";
+		response.statusCode = 200;
 		return response;
 		
 		
