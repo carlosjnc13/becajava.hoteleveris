@@ -19,7 +19,7 @@ public class Comodidade {
 	private String nome;
 
 	@ManyToMany
-	@JoinTable(name = "quartoComodidade", joinColumns = @JoinColumn(name = "quartoId"), inverseJoinColumns = @JoinColumn(name = "comodidadeId"))
+	@JoinTable(name = "quartoComodidade", joinColumns = @JoinColumn(name = "comodidadeId"), inverseJoinColumns = @JoinColumn(name = "quartoId"))
 	Set<Quarto> quarto;
 
 	public Long getId() {
