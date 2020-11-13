@@ -13,7 +13,7 @@ import br.hoteleveris.app.response.ListOcupacaoResponse;
 import br.hoteleveris.app.service.OcupacaoService;
 
 @RestController
-@RequestMapping("/Ocupacoes")
+@RequestMapping("/ocupacoes")
 public class OcupacaoController extends BaseController {
 	
 	final OcupacaoService _service;
@@ -26,7 +26,7 @@ public class OcupacaoController extends BaseController {
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody OcupacaoRequest request){
 		try {
-			BaseResponse response = new BaseResponse();
+			BaseResponse response = _service.criar(request);
 			return ResponseEntity.status(response.statusCode).body(response);
 			
 		} catch (Exception e) {

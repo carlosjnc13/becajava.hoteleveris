@@ -1,19 +1,16 @@
 package br.hoteleveris.app.request;
 
-import org.springframework.beans.factory.annotation.Value;
-
-import br.hoteleveris.app.model.Cliente;
-import br.hoteleveris.app.model.Quarto;
+//import org.springframework.beans.factory.annotation.Value;
 
 public class OcupacaoRequest {
 	
 	private String data;
 	private Long qtdDiarias;
-	
-	@Value("${situacao:'N'}")
+	//@Value("${situacao:'N'}")
 	private String situacao;
-	private Cliente cliente;
-	private Quarto quarto;
+	private Long clienteId;
+	private Long quartoId;
+	
 	
 	public String getData() {
 		return data;
@@ -33,20 +30,17 @@ public class OcupacaoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public Long getClienteId() {
+		return clienteId;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setClienteId(Long clienteId) {
+		this.clienteId = clienteId;
 	}
-	public Quarto getQuarto() {
-		return quarto;
+	public Long getQuartoId() {
+		return quartoId;
 	}
-	public void setQuarto(Quarto quarto) {
-		this.quarto = quarto;
+	public void setQuartoId(Long quartoId) {
+		this.quartoId = quartoId;
 	}
-	
-	
-	
 
 }
