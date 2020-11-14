@@ -5,8 +5,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.model.Quarto;
+import br.hoteleveris.app.model.QuartoComodidade;
+import br.hoteleveris.app.model.TipoQuarto;
+import br.hoteleveris.app.repository.QuartoComodidadeRepository;
 import br.hoteleveris.app.repository.QuartoRepository;
+import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.request.QuartoPatchRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
@@ -16,55 +21,71 @@ import br.hoteleveris.app.response.QuartoResponse;
 @Service
 public class QuartoService {
 	
-	final QuartoRepository _repository;
+	final QuartoRepository  _repository;
+	final QuartoComodidadeRepository _qcRepository;
 	
-	public QuartoService(QuartoRepository repository) {
+	public QuartoService(QuartoRepository repository, QuartoComodidadeRepository qcRepository) {
 		_repository =  repository;
+		_qcRepository = qcRepository;
 	}
 	
 	//CRIAR QUARTO
 	public BaseResponse criar(QuartoRequest request) {
 		BaseResponse response = new BaseResponse();
+		Quarto quarto = new Quarto();
 		response.statusCode = 400;
 		
-		if(request.getAndar() <= 0 ) {
-			response.message = "Andar invalido";
-			return response;
-		}
-		if(request.getNoQuarto() <= 0) {
-			response.message = "Numero de Quarto Invallido";
-			return response;
-		}
-		if(request.getSituacao() == "" || request.getSituacao() == null) {
-			response.message = "Status de Situação Invalido ou não inserido";
-			return response;
-		}
-		if(request.getTipoQuarto().getId() == null || request.getTipoQuarto().getId() <= 0) {
-			response.message = "ID Do Tipo de Quarto Invalido Ou não inserido";
-			return response;
-		}
-		if(request.getComodidade().isEmpty()) {
-			response.message = "A lista De Comodidades está Vazia";
-			return response;
-		}
+		if(request.getAndar() <= 0) {
+            response.message = "Andar não inserido.";
+            return response;
+        }
+
+        if(request.getSituacao() == null || request.getSituacao() == "") {
+            response.message = "Situação não inserida.";
+            return response;
+        }
+
+        if(request.getNoQuarto() <= 0) {
+            response.message = "Número do quarto não inserida.";
+            return response;
+        }
 		
-		Quarto quarto = new Quarto();
 		quarto.setAndar(request.getAndar());
 		quarto.setNoQuarto(request.getNoQuarto());
 		quarto.setSituacao(request.getSituacao());
-		quarto.setTipoQuarto(request.getTipoQuarto());
 		
-//		for(Comodidade c: request.getComodidade()) {
-//			
-//		}
 		
-		quarto.setComodidade(request.getComodidade());
+		TipoQuarto tipoQuarto = new TipoQuarto();
+		tipoQuarto.setId(request.getIdtipoQuarto());
+		quarto.setTipoQuarto(tipoQuarto);
+	
 		_repository.save(quarto);
 		
-		response.statusCode = 200;
-		response.message = "Quarto Cadastrado.";
 		
+		Optional<Quarto> getNumeroQuarto = _repository.findBynoQuarto(request.getNoQuarto());
+		Long quartoId = getNumeroQuarto.get().getId();
+		
+		for(ComodidadeRequest C : request.getComodidades()) {
+			
+			Quarto q = new Quarto();
+			q.setId(quartoId);
+			
+			Comodidade c = new Comodidade();
+			c.setId(C.getId());
+			
+			QuartoComodidade quartoComodidade = new QuartoComodidade();
+			quartoComodidade.setComodidade(c);
+			quartoComodidade.setQuarto(q);
+			
+			
+			_qcRepository.save(quartoComodidade);
+			
+			
+		}
+		response.message = "Quarto Cadastrado!";
+		response.statusCode = 200;
 		return response;
+	
 		
 	}
 	//BUSCAR POR ID
@@ -95,7 +116,7 @@ public class QuartoService {
 	}
 	//LISTAR QUARTOS POR TIPOS DE QUARTOS
 	
-	public ListQuartoResponse listarByTipo (long id) {
+	public ListQuartoResponse listarByTipo (Long id) {
 		ListQuartoResponse response = new ListQuartoResponse();
 		List<Quarto> lista = _repository.findBuscarQuartos(id);
 		response.statusCode = 400;

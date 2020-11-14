@@ -28,22 +28,22 @@ public class OcupacaoService {
 		response.statusCode = 400;
 		
 	
-//		if(request.getQuarto().getId() == null || request.getQuarto().getId() <= 0) {
-//			response.message = " ID de Quarto Invalido ou não inserido";
-//			return response;
-//		}
-//		if(request.getQtdDiarias() == null || request.getQtdDiarias() <= 0) {
-//			response.message = "Quantidade de diarias invalida ou não inserida";
-//			return response;
-//		}
-//		if(request.getData() == null || request.getData() == "") {
-//			response.message = "Data não Inserida ou Invalida";
-//			return response;
-//		}
-//		if(request.getCliente().getId() == null || request.getCliente().getId() <= 0) {
-//			response.message = "ID do Cliente Invalido ou não inserido";
-//			return response;
-//		}
+		if(request.getQuartoId() == null || request.getQuartoId() <= 0) {
+			response.message = " ID de Quarto Invalido ou não inserido";
+			return response;
+		}
+		if(request.getQtdDiarias() == null || request.getQtdDiarias() <= 0) {
+			response.message = "Quantidade de diarias invalida ou não inserida";
+			return response;
+		}
+		if(request.getData() == null || request.getData() == "") {
+			response.message = "Data não Inserida ou Invalida";
+			return response;
+		}
+		if(request.getClienteId() == null || request.getClienteId() <= 0) {
+			response.message = "ID do Cliente Invalido ou não inserido";
+			return response;
+		}
 		
 		Cliente cliente = new Cliente();
 		cliente.setId(request.getClienteId());

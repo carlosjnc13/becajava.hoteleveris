@@ -11,7 +11,6 @@ public class OcupacaoRequest {
 	private Long clienteId;
 	private Long quartoId;
 	
-	
 	public String getData() {
 		return data;
 	}
