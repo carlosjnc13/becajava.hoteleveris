@@ -56,7 +56,7 @@ public class OcupacaoService {
 		ocupacao.setData(request.getData());
 		ocupacao.setQtdDiarias(request.getQtdDiarias());
 		ocupacao.setQuarto(quarto);
-		ocupacao.setSituacao(request.getSituacao());
+		ocupacao.setSituacao("N");
 		
 		_repository.save(ocupacao);
 		

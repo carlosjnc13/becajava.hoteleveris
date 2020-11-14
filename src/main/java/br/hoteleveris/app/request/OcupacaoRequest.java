@@ -6,8 +6,6 @@ public class OcupacaoRequest {
 	
 	private String data;
 	private Long qtdDiarias;
-	//@Value("${situacao:'N'}")
-	private String situacao;
 	private Long clienteId;
 	private Long quartoId;
 	
@@ -23,12 +21,7 @@ public class OcupacaoRequest {
 	public void setQtdDiarias(Long qtdDiarias) {
 		this.qtdDiarias = qtdDiarias;
 	}
-	public String getSituacao() {
-		return situacao;
-	}
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
-	}
+	
 	public Long getClienteId() {
 		return clienteId;
 	}
