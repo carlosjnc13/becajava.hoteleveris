@@ -1,6 +1,7 @@
 package br.hoteleveris.app.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,8 @@ public class Quarto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int andar;
+	
+	@Column(unique = true)
 	private int noQuarto;
 	private String situacao;
 	
