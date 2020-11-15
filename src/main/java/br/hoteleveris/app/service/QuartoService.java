@@ -24,6 +24,7 @@ public class QuartoService {
 	final QuartoRepository  _repository;
 	final QuartoComodidadeRepository _qcRepository;
 	
+	
 	public QuartoService(QuartoRepository repository, QuartoComodidadeRepository qcRepository) {
 		_repository =  repository;
 		_qcRepository = qcRepository;

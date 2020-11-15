@@ -1,5 +1,4 @@
 package br.hoteleveris.app.response;
-
 import br.hoteleveris.app.model.TipoQuarto;
 
 public class QuartoResponse extends BaseResponse{
@@ -9,6 +8,8 @@ public class QuartoResponse extends BaseResponse{
 	private int noQuarto;
 	private String situacao;
 	private TipoQuarto tipoQuarto;
+	
+	public QuartoResponse() {}
 	
 	public Long getId() {
 		return id;
@@ -41,6 +42,4 @@ public class QuartoResponse extends BaseResponse{
 		this.tipoQuarto = tipoQuarto;
 	}
 	
-	
-
 }

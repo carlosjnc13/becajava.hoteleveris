@@ -1,6 +1,7 @@
 package br.hoteleveris.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import br.hoteleveris.app.repository.TipoQuartoRepository;
 import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListTipoQuartoResponse;
+import br.hoteleveris.app.response.TipoQuartoResponse;
 
 @Service
 public class TipoQuartoService {
@@ -66,5 +68,32 @@ public class TipoQuartoService {
 		return response;
 
 	}
+	
+	//BUSCAR POR ID
+	public TipoQuartoResponse obter(Long id) {
+		TipoQuartoResponse response = new TipoQuartoResponse();
+		Optional<TipoQuarto> tipoQuarto = _repository.findById(id);
+		response.statusCode = 400;
+		
+		if(id <= 0 || id == null) {
+			response.message= "ID invalido.";
+			return response;
+		}
+		if(tipoQuarto.isEmpty()) {
+			response.message = "Cliente não encontrado.";
+			return response;
+		}
+		
+		response.setDescricao(tipoQuarto.get().getDescricao());
+		response.setId(tipoQuarto.get().getId());
+		response.setValor(tipoQuarto.get().getValor());
+		
+		response.statusCode = 200;
+		response.message = "Tipo de Quarto Obtido.";
+		
+		return response;
+		
+	}
+
 
 }
