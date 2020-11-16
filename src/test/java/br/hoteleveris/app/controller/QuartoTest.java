@@ -189,9 +189,9 @@ public class QuartoTest {
 	@Test
 	public void atualizarSituacao() {
 		QuartoPatchRequest request = new QuartoPatchRequest();
-		request.setSituacao("A");
+		request.setSituacao("I");
 		
-		Long id = 18L;	
+		Long id = 52L;	
 		BaseResponse response = service.atualizarSituacao(id, request);
 		Assertions.assertEquals(200, response.getStatusCode());
 		Assertions.assertEquals("Atualização realizada.", response.getMessage());
@@ -217,7 +217,6 @@ public class QuartoTest {
 		Long id = 1888L;	
 		BaseResponse response = service.atualizarSituacao(id, request);
 		Assertions.assertEquals(400, response.getStatusCode());
-		
 		
 	}
 	

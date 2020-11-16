@@ -150,7 +150,7 @@ public class QuartoService {
 			return response;
 		}
 		
-		if(request.getSituacao() != "A" || request.getSituacao() !="I" ) {
+		if(request.getSituacao() == "" || request.getSituacao() == null ) {
 			response.message = "Situação Invalida ou não inserida.";
 			return response;
 		}

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.service.FaturaService;
 
 @RestController
@@ -16,10 +17,10 @@ public class FaturaController extends BaseController{
 	private FaturaService _service;
 	
 	@PostMapping
-	public ResponseEntity<?> transferencia () {
+	public ResponseEntity<BaseResponse> transferencia () {
 		try {
-			_service.transferencia();
-			return ResponseEntity.status(200).body("Transferencia Completa.");
+			BaseResponse response =_service.transferencia();
+			return ResponseEntity.status(response.statusCode).body(response);
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(error.statusCode).body(error);

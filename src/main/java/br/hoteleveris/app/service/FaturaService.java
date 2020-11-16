@@ -17,15 +17,22 @@ public class FaturaService {
 	
 	@Autowired
 	private OcupacaoRepository ocupacaoRepository;
-	
-	private String hashContaHotel = "XNY4cYbj8Y";
-	
-	public void transferencia(){
 		
+	public BaseResponse transferencia(){
+		
+		BaseResponse response = new BaseResponse();
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "http://localhost:8081/operacoes/transferencia";
+		String hashContaHotel = "XNY4cYbj8Y";
 		
 		List<Ocupacao> lista = ocupacaoRepository.findBysituacao("N");
+		
+		if(lista.isEmpty()) {
+			response.message ="Não Há nenhuma Ocupação em debito.";
+			response.statusCode =  400;
+			return response;
+			
+		}
 		
 		//VARREDURA DA LISTA DE OCUPAÇÕES COM VALOR DE SITUAÇÃO "N"
 		for (Ocupacao ocupacao: lista) {
@@ -43,6 +50,10 @@ public class FaturaService {
 		ocupacaoRepository.save(ocupacao);
 		
 		}
+		response.statusCode = 200;
+		response.message = "Transferencia completa";
+		
+		return response;
 		
 	}
 	
