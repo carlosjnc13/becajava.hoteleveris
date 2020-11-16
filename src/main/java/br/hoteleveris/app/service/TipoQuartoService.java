@@ -30,7 +30,7 @@ public class TipoQuartoService {
 			return response;	
 		}
 		if(request.getValor() <= 0 || request.getValor() == null) {
-			response.message = "Valor Invalido ou não inserido ";
+			response.message = "Valor Invalido ou não inserido";
 			return response;
 		}
 		
@@ -41,7 +41,7 @@ public class TipoQuartoService {
 		_repository.save(tipoQuarto);
 		
 		response.message = "Tipo de Quarto cadastrado.";
-		response.statusCode = 200;
+		response.statusCode = 201;
 		
 		return response;
 		

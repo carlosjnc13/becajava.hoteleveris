@@ -28,7 +28,7 @@ public class OcupacaoService {
 		
 	
 		if(request.getQuartoId() == null || request.getQuartoId() <= 0) {
-			response.message = " ID de Quarto Invalido ou não inserido";
+			response.message = "ID de Quarto Invalido ou não inserido";
 			return response;
 		}
 		if(request.getQtdDiarias() == null || request.getQtdDiarias() <= 0) {
@@ -59,8 +59,8 @@ public class OcupacaoService {
 		
 		_repository.save(ocupacao);
 		
-		response.message = "Ocupacao Inserida";
-		response.statusCode = 200;
+		response.message = "Ocupacao Inserida.";
+		response.statusCode = 201;
 		
 		return response;
 
@@ -74,6 +74,7 @@ public class OcupacaoService {
 		
 		if(lista.isEmpty()) {
 			response.message = "Lista Vazia";
+			response.statusCode = 400;
 			return response;
 		}
 		

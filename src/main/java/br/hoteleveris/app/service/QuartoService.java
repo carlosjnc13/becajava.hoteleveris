@@ -35,18 +35,22 @@ public class QuartoService {
 		response.statusCode = 400;
 		
 		if(request.getAndar() <= 0) {
-            response.message = "Andar não inserido.";
+            response.message = "Andar não inserido ou Invalido.";
             return response;
         }
 
         if(request.getSituacao() == null || request.getSituacao() == "") {
-            response.message = "Situação não inserida.";
+            response.message = "Situação não inserida ou Invalida.";
             return response;
         }
 
         if(request.getNoQuarto() <= 0) {
-            response.message = "Número do quarto não inserida.";
+            response.message = "Número do quarto não inserido ou Invalido";
             return response;
+        }
+        if(request.getIdtipoQuarto() <= 0 || request.getIdtipoQuarto() == null) {
+        	response.message = "Id do Tipo de Quarto Invalido Ou não Inserido" ;
+        	return response;
         }
 		
 		quarto.setAndar(request.getAndar());
@@ -83,7 +87,7 @@ public class QuartoService {
 			
 		}
 		response.message = "Quarto Cadastrado!";
-		response.statusCode = 200;
+		response.statusCode = 201;
 		return response;
 	
 		
@@ -146,7 +150,7 @@ public class QuartoService {
 			return response;
 		}
 		
-		if(request.getSituacao() == null || request.getSituacao() == "") {
+		if(request.getSituacao() != "A" || request.getSituacao() !="I" ) {
 			response.message = "Situação Invalida ou não inserida.";
 			return response;
 		}
