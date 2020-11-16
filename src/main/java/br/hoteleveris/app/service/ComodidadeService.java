@@ -2,6 +2,7 @@ package br.hoteleveris.app.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Comodidade;
@@ -13,12 +14,8 @@ import br.hoteleveris.app.response.ComodidadeResponse;
 @Service
 public class ComodidadeService {
 	
-	final ComodidadeRepository _repository;
-	
-	public ComodidadeService(ComodidadeRepository repository) {
-		_repository = repository;
-		
-	}
+	@Autowired
+	private ComodidadeRepository _repository;
 	
 	//CRIAR COMODIDADE
 	
@@ -41,7 +38,7 @@ public class ComodidadeService {
 		return response;
 	}
 	
-	//OBTER POR ID
+	//OBTER COMODIDADE POR ID
 	
 	public ComodidadeResponse obter(Long id) {
 		ComodidadeResponse response = new ComodidadeResponse();

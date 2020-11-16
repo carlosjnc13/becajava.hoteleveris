@@ -1,5 +1,6 @@
 package br.hoteleveris.app.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +22,8 @@ import br.hoteleveris.app.service.QuartoService;
 @RequestMapping("/quartos")
 public class QuartoController extends BaseController {
 
-	final QuartoService _service;
-
-	public QuartoController(QuartoService service) {
-		_service = service;
-
-	}
+	@Autowired
+	private QuartoService _service;
 
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody QuartoRequest request) {

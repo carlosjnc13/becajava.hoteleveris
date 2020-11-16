@@ -1,5 +1,6 @@
 package br.hoteleveris.app.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,9 @@ import br.hoteleveris.app.service.ClienteService;
 @RequestMapping("/clientes")
 public class ClienteController extends BaseController{
 	
-	final ClienteService _service;
+	@Autowired
+	private ClienteService _service;
 	
-	public ClienteController(ClienteService service) {
-		_service = service;
-		
-	}
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody ClienteRequest request){
 		try {

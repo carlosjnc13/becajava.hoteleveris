@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import br.hoteleveris.app.model.Ocupacao;
-import br.hoteleveris.app.repository.ClienteRepository;
 import br.hoteleveris.app.repository.OcupacaoRepository;
-import br.hoteleveris.app.repository.QuartoRepository;
-import br.hoteleveris.app.repository.TipoQuartoRepository;
 import br.hoteleveris.app.request.TransferenciaRequest;
 import br.hoteleveris.app.response.BaseResponse;
 
@@ -29,28 +26,24 @@ public class FaturaService {
 		String url = "http://localhost:8081/operacoes/transferencia";
 		
 		List<Ocupacao> lista = ocupacaoRepository.findBysituacao("N");
-		//TransferenciaRequest transferencia = new TransferenciaRequest();
 		
+		//VARREDURA DA LISTA DE OCUPAÇÕES COM VALOR DE SITUAÇÃO "N"
 		for (Ocupacao ocupacao: lista) {
 		double valor = ocupacao.getQuarto().getTipoQuarto().getValor() * ocupacao.getQtdDiarias();
-
 		
-		TransferenciaRequest transferencia = new TransferenciaRequest();
-		transferencia.setHashDestino(hashContaHotel);
-		transferencia.setHashOrigem(ocupacao.getCliente().getHash());
-		transferencia.setValor(valor);
+		TransferenciaRequest transferenciaRequest = new TransferenciaRequest();
+		transferenciaRequest.setHashDestino(hashContaHotel);
+		transferenciaRequest.setHashOrigem(ocupacao.getCliente().getHash());
+		transferenciaRequest.setValor(valor);
 		
-		BaseResponse response = restTemplate.postForObject(url, transferencia, BaseResponse.class);
+		//REQUISIÇÃO
+		restTemplate.postForObject(url, transferenciaRequest, BaseResponse.class);
 		
 		ocupacao.setSituacao("P");
 		ocupacaoRepository.save(ocupacao);
 		
 		}
 		
-		//BaseResponse response = restTemplate.postForObject(url, transferencia, BaseResponse.class);
-		//response.statusCode = 200;
-		//response.message = "Transferencia completa.";
-		//return response;
 	}
 	
 	

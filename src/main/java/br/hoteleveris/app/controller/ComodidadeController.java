@@ -1,5 +1,6 @@
 package br.hoteleveris.app.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,8 @@ import br.hoteleveris.app.service.ComodidadeService;
 @RequestMapping("/comodidades")
 public class ComodidadeController extends BaseController {
 	
-	final ComodidadeService _service;
-	
-	public ComodidadeController(ComodidadeService service) {
-		_service = service;
-		
-	}
+	@Autowired
+	private ComodidadeService _service;
 	
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar (@RequestBody ComodidadeRequest request){

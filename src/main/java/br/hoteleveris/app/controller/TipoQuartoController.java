@@ -1,5 +1,6 @@
 package br.hoteleveris.app.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,12 +19,9 @@ import br.hoteleveris.app.service.TipoQuartoService;
 @RequestMapping("/tiposquarto")
 public class TipoQuartoController extends BaseController{
 	
-	final TipoQuartoService _service;
+	@Autowired
+	private TipoQuartoService _service;
 	
-	public TipoQuartoController(TipoQuartoService service) {
-		_service = service;
-		
-	}
 	@PostMapping
 	public ResponseEntity<BaseResponse> criar(@RequestBody TipoQuartoRequest request){
 		try {

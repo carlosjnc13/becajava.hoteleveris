@@ -3,6 +3,7 @@ package br.hoteleveris.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Comodidade;
@@ -21,14 +22,11 @@ import br.hoteleveris.app.response.QuartoResponse;
 @Service
 public class QuartoService {
 	
-	final QuartoRepository  _repository;
-	final QuartoComodidadeRepository _qcRepository;
+	@Autowired
+	private QuartoRepository  _repository;
 	
-	
-	public QuartoService(QuartoRepository repository, QuartoComodidadeRepository qcRepository) {
-		_repository =  repository;
-		_qcRepository = qcRepository;
-	}
+	@Autowired
+	private QuartoComodidadeRepository _qcRepository;
 	
 	//CRIAR QUARTO
 	public BaseResponse criar(QuartoRequest request) {
@@ -63,6 +61,7 @@ public class QuartoService {
 		_repository.save(quarto);
 		
 		
+		//INSERÇÃO DAS COMODIDADES REFERENTES NO BANCO DE DADOS 
 		Optional<Quarto> getNumeroQuarto = _repository.findBynoQuarto(request.getNoQuarto());
 		Long quartoId = getNumeroQuarto.get().getId();
 		

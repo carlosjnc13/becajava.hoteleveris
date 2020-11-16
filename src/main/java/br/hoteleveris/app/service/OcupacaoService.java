@@ -2,6 +2,7 @@ package br.hoteleveris.app.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Cliente;
@@ -15,13 +16,11 @@ import br.hoteleveris.app.response.ListOcupacaoResponse;
 @Service
 public class OcupacaoService {
 	
-	final OcupacaoRepository _repository;
 	
-	public OcupacaoService(OcupacaoRepository repository) {
-		_repository = repository;
-	}
+	@Autowired
+	private OcupacaoRepository _repository;
 	
-	//CRIAR
+	//CRIAR OCUPAÇÃO
 	
 	public BaseResponse criar(OcupacaoRequest request) {
 		BaseResponse response = new BaseResponse();

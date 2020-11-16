@@ -2,6 +2,7 @@ package br.hoteleveris.app.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.Cliente;
@@ -13,12 +14,9 @@ import br.hoteleveris.app.response.ClienteResponse;
 @Service
 public class ClienteService {
 	
-	final ClienteRepository _repository;
+	@Autowired
+	private ClienteRepository _repository;
 	
-	public ClienteService(ClienteRepository repository) {
-		_repository = repository;
-		
-	}
 	//CRIAR CLIENTE
 	
 	public BaseResponse criar(ClienteRequest request) {
@@ -52,7 +50,7 @@ public class ClienteService {
 
 	}
 	
-	//OBTER POR ID
+	//OBTER CLIENTE POR ID
 	
 	public ClienteResponse obter(Long id) {
 		ClienteResponse response = new ClienteResponse();
@@ -63,11 +61,12 @@ public class ClienteService {
 			response.message= "ID invalido.";
 			return response;
 		}
-		if(cliente.isEmpty()) {
+		if(!cliente.isPresent()) {
 			response.message = "Cliente não encontrado.";
 			return response;
 		}
 		
+		//HASH NÃO PODE SER RETORNADO
 		response.setNome(cliente.get().getNome());
 		response.setCpf(cliente.get().getCpf());
 		response.setId(cliente.get().getId());

@@ -3,6 +3,7 @@ package br.hoteleveris.app.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.hoteleveris.app.model.TipoQuarto;
@@ -15,11 +16,9 @@ import br.hoteleveris.app.response.TipoQuartoResponse;
 @Service
 public class TipoQuartoService {
 	
-	final TipoQuartoRepository _repository;
 	
-	public TipoQuartoService(TipoQuartoRepository repository) {
-		_repository = repository;
-	}
+	@Autowired
+	private TipoQuartoRepository _repository;
 	
 	//CRIAR TIPO DE QUARTO
 	public BaseResponse criar(TipoQuartoRequest request) {
@@ -69,7 +68,7 @@ public class TipoQuartoService {
 
 	}
 	
-	//BUSCAR POR ID
+	//BUSCAR TIPO DE QUARTO POR ID
 	public TipoQuartoResponse obter(Long id) {
 		TipoQuartoResponse response = new TipoQuartoResponse();
 		Optional<TipoQuarto> tipoQuarto = _repository.findById(id);
