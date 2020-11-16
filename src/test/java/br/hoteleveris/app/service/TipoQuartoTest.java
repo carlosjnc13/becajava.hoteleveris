@@ -1,4 +1,4 @@
-package br.hoteleveris.app.controller;
+package br.hoteleveris.app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,7 +11,6 @@ import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListTipoQuartoResponse;
 import br.hoteleveris.app.response.TipoQuartoResponse;
-import br.hoteleveris.app.service.TipoQuartoService;
 
 @SpringBootTest
 public class TipoQuartoTest {

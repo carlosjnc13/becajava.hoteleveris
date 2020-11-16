@@ -1,4 +1,4 @@
-package br.hoteleveris.app.controller;
+package br.hoteleveris.app.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.hoteleveris.app.request.ClienteRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ClienteResponse;
-import br.hoteleveris.app.service.ClienteService;
 
 @SpringBootTest
 public class ClienteTest {

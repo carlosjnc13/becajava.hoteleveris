@@ -1,16 +1,15 @@
-package br.hoteleveris.app.controller;
+package br.hoteleveris.app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import br.hoteleveris.app.request.OcupacaoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListOcupacaoResponse;
-import br.hoteleveris.app.service.OcupacaoService;
 
 @SpringBootTest
 public class OcupacaoTest {

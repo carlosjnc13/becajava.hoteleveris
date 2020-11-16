@@ -1,4 +1,4 @@
-package br.hoteleveris.app.controller;
+package br.hoteleveris.app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ComodidadeResponse;
-import br.hoteleveris.app.service.ComodidadeService;
 
 @SpringBootTest
 public class ComodidadeTest {
@@ -76,12 +75,5 @@ public class ComodidadeTest {
 		assertThat(!response.getNome().isEmpty());
 		assertThat(!response.getNome().isBlank());
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

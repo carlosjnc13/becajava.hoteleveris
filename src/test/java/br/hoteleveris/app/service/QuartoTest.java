@@ -1,4 +1,4 @@
-package br.hoteleveris.app.controller;
+package br.hoteleveris.app.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,7 +17,6 @@ import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListQuartoResponse;
 import br.hoteleveris.app.response.QuartoResponse;
-import br.hoteleveris.app.service.QuartoService;
 
 @SpringBootTest
 public class QuartoTest {
@@ -195,8 +194,7 @@ public class QuartoTest {
 		BaseResponse response = service.atualizarSituacao(id, request);
 		Assertions.assertEquals(200, response.getStatusCode());
 		Assertions.assertEquals("Atualização realizada.", response.getMessage());
-		
-		
+
 	}
 	@Test
 	public void atualizarSituacaoIdInexistente() {
