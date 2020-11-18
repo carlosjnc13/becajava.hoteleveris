@@ -46,6 +46,29 @@ public class QuartoTest {
 		Assertions.assertEquals("Quarto Cadastrado!", response.getMessage());
 		
 	}
+	
+	@Test
+	public void criarSemIdTipoQuarto() {
+		QuartoRequest request =  new QuartoRequest();
+		request.setAndar(32);
+		
+		List<ComodidadeRequest> teste = new ArrayList<ComodidadeRequest>();
+		ComodidadeRequest comodidade = new ComodidadeRequest();
+		comodidade.setId(1L);
+		teste.add(comodidade);
+		
+		request.setComodidades(teste);
+		request.setIdtipoQuarto(-17878L);
+		int noQuarto = this.getRandomNumberUsingInts(1,1000);
+		request.setNoQuarto(noQuarto);
+		request.setSituacao("Ativo");
+		
+		BaseResponse response = service.criar(request);
+		Assertions.assertEquals(400, response.getStatusCode());
+		Assertions.assertEquals("Id do Tipo de Quarto Invalido Ou não Inserido", response.getMessage());
+		
+	}
+	
 	@Test
 	public void criarSemAndar() {
 		QuartoRequest request =  new QuartoRequest();
